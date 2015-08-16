@@ -1,17 +1,10 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name leagueItemSetsApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the leagueItemSetsApp
- */
 angular.module('leagueItemSetsApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('MainCtrl', function ($scope, RiotService) {
+        
+        RiotService.Champions.Get().then(function(result){
+            $scope.champions = result.data.data;
+            console.log($scope.champions);
+        });
+    });
