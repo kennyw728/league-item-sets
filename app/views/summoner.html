@@ -1,0 +1,21 @@
+<form class="form-inline" style="text-align: center">
+    <div class="form-group">
+        <label>Search</label>
+        <input type="text" class="form-control" placeholder="Enter a summoner" ng-model="newSummoner" ng-keyup="searchSummoner(newSummoner)">
+    </div>
+</form>
+<hr>
+<h2>{{summoner.name}}</h2>
+<img src="https://avatar.leagueoflegends.com/na/{{summoner.name}}.png">
+<div class="row">
+    <div class="col-md-2" ng-repeat="match in matches" style="text-align: center; ">
+        <div class="well" ng-repeat="participant in match.participants">
+            <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + participant.championDetail.image.full}}">
+            <div class="champTitle ellipsis">{{participant.championDetail.name}}</div>
+            <div class="ellipsis" style="text-align: left" ng-repeat="item in participant.items" >
+                <img style="width: 25px; height: 25px" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}">
+                <span>{{item.name}}</span>
+            </div>
+        </div>
+    </div>
+</div>

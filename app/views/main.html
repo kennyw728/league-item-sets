@@ -1,13 +1,13 @@
 <form class="form-inline" style="text-align: center">
-  <div class="form-group">
-    <label>Filter</label>
-    <input type="text" class="form-control" placeholder="Champion Name" ng-model="filterChampion" ng-keyup="filter(filterChampion)">
-  </div>
-    <hr>
+    <div class="form-group">
+        <label>Filter</label>
+        <input type="text" class="form-control" placeholder="Champion Name" ng-model="filterChampion" ng-keyup="filter(filterChampion)">
+    </div>
 </form>
+<hr>
 <div class="row">
     <div class="col-md-1" ng-repeat="(championName, championDetail) in champions | orderObjectBy:'name'" ng-hide="championDetail.hide">
-        <img class="champIcon" src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + championDetail.image.full}}">
+        <img class="champIcon" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + championDetail.image.full}}">
         <div class="champTitle ellipsis">{{championDetail.name}}</div>
     </div>
 </div>
