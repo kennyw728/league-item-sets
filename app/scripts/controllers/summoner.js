@@ -40,7 +40,6 @@ angular.module('leagueItemSetsApp')
                         var itemID = match.participants[0].stats['item' + i];
                         if (itemID !== 0) {
                             items.push(angular.copy($scope.items[itemID]));
-                            //console.log($scope.items[itemID]);
                         }
                     }
                     match.participants[0].items = items;

@@ -7,7 +7,7 @@
 <hr>
 <div class="row">
     <div class="col-md-1" ng-repeat="(championName, championDetail) in champions | orderObjectBy:'name'" ng-hide="championDetail.hide">
-        <img class="champIcon" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + championDetail.image.full}}">
+        <a ng-href="#/champion/{{championDetail.id}}"><img class="champIcon" src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + championDetail.image.full}}"></a>
         <div class="champTitle ellipsis">{{championDetail.name}}</div>
     </div>
 </div>

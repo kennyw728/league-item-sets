@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-2" ng-repeat="match in matches" style="text-align: center; ">
         <div class="well" ng-repeat="participant in match.participants">
-            <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + participant.championDetail.image.full}}">
+            <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + participant.championDetail.image.full}}">
             <div class="champTitle ellipsis">{{participant.championDetail.name}}</div>
             <div class="ellipsis" style="text-align: left" ng-repeat="item in participant.items" >
                 <img style="width: 25px; height: 25px" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}">
