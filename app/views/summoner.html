@@ -1,14 +1,14 @@
-<form class="form-inline" style="text-align: center">
-    <div class="form-group">
-        <label>Search</label>
-        <input type="text" class="form-control" placeholder="Enter a summoner" ng-model="newSummoner" ng-keyup="searchSummoner(newSummoner)">
+<form class="form-inline" style="text-align: center" ng-submit="searchSummoner(newSummoner)">
+    <div class="form-group input-group">
+        <input type="text" class="form-control" style="width: 300px" placeholder="Enter a summoner" ng-model="newSummoner">
+        <span class="input-group-addon" ng-click="searchSummoner(newSummoner)">Go</span>
     </div>
 </form>
 <hr>
 <h2>{{summoner.name}}</h2>
 <img src="https://avatar.leagueoflegends.com/na/{{summoner.name}}.png">
 <div class="row">
-    <div class="col-md-2" ng-repeat="match in matches" style="text-align: center; ">
+    <div class="col-md-3" ng-repeat="match in matches" style="text-align: center; ">
         <div class="well" ng-repeat="participant in match.participants">
             <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + participant.championDetail.image.full}}">
             <div class="champTitle ellipsis">{{participant.championDetail.name}}</div>
@@ -16,6 +16,33 @@
                 <img style="width: 25px; height: 25px" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}">
                 <span>{{item.name}}</span>
             </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#jsonModal" data-champion="{{participant.championDetail}}" data-summoner="{{summoner.name}}" data-items="{{participant.items}}">Get Item Set</button>
         </div>
     </div>
+</div>
+
+<!-- Modal below -->
+
+<div class="modal fade" id="jsonModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Test</h4>
+      </div>
+      <div class="modal-body" style="">
+          <label>Go this directory (or associate Riot Games Directory):</label>
+          <div style="margin: 0 0 10px 25px"><samp class="fileLocation"></samp></div>
+          <label>and save the below as a .json file with any name</label>
+          <div>TODO: button for copy to clipboard</div>
+          <div>TODO: download file and move</div>
+          <hr>
+          <div class="jsonText"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
 </div>
