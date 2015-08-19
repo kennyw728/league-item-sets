@@ -5,16 +5,25 @@
     </div>
 </form>
 <hr>
-<h2>{{summoner.name}}</h2>
-<img src="https://avatar.leagueoflegends.com/na/{{summoner.name}}.png">
+
 <div class="row">
-    <div class="col-md-3" ng-repeat="match in matches" style="text-align: center; ">
+    <img style="float: left; width: 100px" src="https://avatar.leagueoflegends.com/na/{{summoner.name}}.png">
+    <h2 style="float: left">{{summoner.name}}</h2>
+</div>
+<hr>
+<div class="row">
+    <div class="col-sm-3" ng-repeat="match in matches" style="text-align: center; ">
         <div class="well" ng-repeat="participant in match.participants">
             <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + participant.championDetail.image.full}}">
-            <div class="champTitle ellipsis">{{participant.championDetail.name}}</div>
-            <div class="ellipsis" style="text-align: left" ng-repeat="item in participant.items" >
-                <img style="width: 25px; height: 25px" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}">
-                <span>{{item.name}}</span>
+            <h4 class="champTitle ellipsis">{{participant.kda}}</h4>
+            <div class="row" style="margin-bottom: 15px">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <div class="row">
+                        <div class="col-xs-3" style="padding: 2px" ng-repeat="item in participant.items" >
+                            <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}">
+                        </div>
+                    </div>
+                </div>
             </div>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#jsonModal" data-champion="{{participant.championDetail}}" data-summoner="{{summoner.name}}" data-items="{{participant.items}}">Get Item Set</button>
         </div>
@@ -23,26 +32,24 @@
 
 <!-- Modal below -->
 
-<div class="modal fade" id="jsonModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Test</h4>
-      </div>
-      <div class="modal-body" style="">
-          <label>Go this directory (or associate Riot Games Directory):</label>
-          <div style="margin: 0 0 10px 25px"><samp class="fileLocation"></samp></div>
-          <label>and save the below as a .json file with any name</label>
-          <div>TODO: button for copy to clipboard</div>
-          <div>TODO: download file and move</div>
-          <hr>
-          <div class="jsonText"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
+<div class="modal fade" id="jsonModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document" style="margin-top: 200px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalLabel"></h4>
+            </div>
+            <div class="modal-body text-center">
+                <div>
+                    <label>Go this directory (or associating Riot Games Directory):</label>
+                    <div style="margin: 0 0 10px 25px"><samp id="fileLocation"></samp></div>
+                    <label>and save the below file into the above directory.</label>
+                </div>
+                <button class="btn btn-primary" id="downloadButton" style="margin: 15px"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="close()">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

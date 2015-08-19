@@ -40,8 +40,8 @@ angular.module('leagueItemSetsApp')
             var button = $(event.relatedTarget)
             var items = button.data('items');
             var summoner = button.data('summoner');
-            console.log(button.data('champion'));
-            var fileLocation = 'C:\\Riot Games\\League of Legends\\Config\\Champions\\'+ button.data('champion').key + '\\Recommended';
+            var champion = button.data('champion');
+            var fileLocation = 'C:\\Riot Games\\League of Legends\\Config\\Champions\\'+ champion.key + '\\Recommended';
             
             var modal = $(this);
 
@@ -50,10 +50,16 @@ angular.module('leagueItemSetsApp')
                items: items
             }];
             var itemSetJSON = Utilities.CreateItemSetJSON(summoner + '\'s Build', blocks);
-
-            modal.find('.modal-body .jsonText').text(angular.toJson(itemSetJSON));
-            modal.find('.modal-body .fileLocation').text(fileLocation);
-        })
+            var data = "text/json;charset=utf-8," + encodeURIComponent(angular.toJson(itemSetJSON));
+            
+            modal.find('#downloadButton').append('<a href="data:' + data + '" download="' + summoner + ' ' + champion.key + '.json">Download JSON</a>');
+            modal.find('#fileLocation').text(fileLocation);
+            modal.find('#modalLabel').text(summoner + '\'s ' + champion.key);
+        });
+        
+        $scope.close = function(){
+            $('#downloadButton a').remove();
+        };
 
         //
         //Functions
@@ -75,8 +81,9 @@ angular.module('leagueItemSetsApp')
                         if (itemID !== 0) {
                             items.push(angular.copy($scope.items[itemID]));
                         }
-                    }
+                    }console.log(match);
                     match.participants[0].items = items;
+                    match.participants[0].kda = match.participants[0].stats.kills + ' / ' + match.participants[0].stats.deaths + ' / ' + match.participants[0].stats.assists
                 });
             });
         }

@@ -19,7 +19,7 @@ angular.module('leagueItemSetsApp')
                 };
             
             var MatchHistory = {
-                GetBySummonerID: function (summonerID) { return $http.get(baseURL + 'api/lol/na/v2.2/matchhistory/' + summonerID + '?' + APIKey); }
+                GetBySummonerID: function (summonerID) { return $http.get(baseURL + 'api/lol/na/v2.2/matchhistory/' + summonerID + '?championIds=39&' + APIKey); }
             }
             
             return {
