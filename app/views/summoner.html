@@ -4,15 +4,17 @@
         <span class="input-group-addon" ng-click="searchSummoner(newSummoner)">Go</span>
     </div>
 </form>
-<hr>
-
-<div class="row">
-    <img style="float: left; width: 100px" src="https://avatar.leagueoflegends.com/na/{{summoner.name}}.png">
-    <h2 style="float: left">{{summoner.name}}</h2>
+<div>
+    <hr>
+    <div class="row" style="border: solid 1px; background-color: rgba(255, 255, 255, 0.04)" ng-show="summoner.playerOrTeamName">
+        <img class="headerIcon" src="https://avatar.leagueoflegends.com/na/{{summoner.playerOrTeamName}}.png">
+        <div class="headerText">{{summoner.playerOrTeamName}}</div>
+        <div class="subheaderText">{{summoner.division}} - {{summoner.leaguePoints}}LP <span style="margin-left: 25px">Wins: {{summoner.wins}}</span></div>
+    </div>
+    <hr>
 </div>
-<hr>
 <div class="row">
-    <div class="col-sm-3" ng-repeat="match in matches" style="text-align: center; ">
+    <div class="col-sm-3" ng-repeat="match in matches| orderBy: '-matchCreation'" style="text-align: center">
         <div class="well" ng-repeat="participant in match.participants">
             <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + participant.championDetail.image.full}}">
             <h4 class="champTitle ellipsis">{{participant.kda}}</h4>
@@ -20,12 +22,12 @@
                 <div class="col-xs-6 col-xs-offset-3">
                     <div class="row">
                         <div class="col-xs-3" style="padding: 2px" ng-repeat="item in participant.items" >
-                            <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}">
+                            <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}" title="{{item.name}}">
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#jsonModal" data-champion="{{participant.championDetail}}" data-summoner="{{summoner.name}}" data-items="{{participant.items}}">Get Item Set</button>
+            <button type="button" class="btn btn-primary" ng-click="openModal(participant.items, summoner.name, participant.championDetail)">Get Item Set</button>
         </div>
     </div>
 </div>
