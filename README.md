@@ -1,12 +1,22 @@
 # league-item-sets
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.1.
+[Live Site](http://kennyw728.github.io/league-item-sets/dist)
 
-## Build & development
+## Our process
 
-Run `grunt` for building and `grunt serve` for preview.
+## Technologies used
 
-## Testing
+## TODO
 
-Running `grunt test` will run the unit tests with karma.
+- Champion Page
+  - top half for most frequent
+  - bottom half list best performing (kda, most win by summoner, etc)
+- Summoner Page
+  - search for specific champions played by specific players
+  - KDA indicators (with W/L indicator)
+- General additions to functions
+  - Build order in addition to final build for summoners (limit to previous 2 patches)
+- Home Screen
+  - dual boxes for champions/summoners
+- CSS (make it prettier)
+- More Documentation
