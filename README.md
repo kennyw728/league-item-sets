@@ -1,6 +1,6 @@
 # league-item-sets
 
-[Live Site](http://kennyw728.github.io/league-item-sets/dist)
+## [Live Site HERE](http://kennyw728.github.io/league-item-sets/dist)
 
 by Kenny Wong (NA: CantonNeko)
 and Nathan Frueh (NA: urbanVenturer)
