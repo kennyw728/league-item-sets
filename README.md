@@ -79,5 +79,7 @@ and Nathan Frueh (NA: urbanVenturer)
 - General additions
     - Build order breakdowns (early/mid/late) in addition to final build for summoners
     - Analyze games from other regions
+    - Automate analysis python script
+    - Remove games from older patches
 - CSS (can always make it prettier)
 - Documentation (can always have more of this)

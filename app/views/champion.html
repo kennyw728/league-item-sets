@@ -29,58 +29,63 @@
 <br/>
 
 <div class="row">
-    <div class="col-md-3">
+    <h3>
         Highest KDA Final Builds:
-    </div>
-
+    </h3>
+    <div class="col-sm-3"></div>
     <div class="col-sm-3">
-        <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + selectedChamp.image.full}}">
-        <h4 class="champTitle ellipsis">{{highestKDAInfo.fullKDA}} -- KDA: {{highestKDAInfo.KDA}}</h4>
-        <h4 class="champTitle ellipsis">{{highestKDAInfo.summonerPlaying}}</h4>
-        <div class="row" style="margin-bottom: 15px">
-            <div class="col-xs-6 col-xs-offset-3">
-                <div class="row">
-                    <div class="col-xs-3" style="padding: 2px" ng-repeat="item in highestKDAInfo.itemArray" >
-                        <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}" title="{{item.name}}">
+        <div class="well" style="text-align: center">
+            <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + selectedChamp.image.full}}">
+            <h4 class="champTitle ellipsis">{{highestKDAInfo.fullKDA}} -- KDA: {{highestKDAInfo.KDA}}</h4>
+            <h4 class="champTitle ellipsis">{{highestKDAInfo.summonerPlaying}}</h4>
+            <div class="row" style="margin-bottom: 15px">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <div class="row">
+                        <div class="col-xs-3" style="padding: 2px" ng-repeat="item in highestKDAInfo.itemArray" >
+                            <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}" title="{{item.name}}">
+                        </div>
                     </div>
                 </div>
             </div>
+            <button type="button" class="btn btn-primary" ng-click="openModal(highestKDAInfo.itemArray, 'highestKDA')">Get Item Set</button>
         </div>
-        <button type="button" class="btn btn-primary" ng-click="openModal(highestKDAInfo.itemArray, 'highestKDA')">Get Item Set</button>
     </div>
 
     <div class="col-sm-3">
-        <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + selectedChamp.image.full}}">
-        <h4 class="champTitle ellipsis">{{secondHighestKDAInfo.fullKDA}} -- KDA: {{secondHighestKDAInfo.KDA}}</h4>
-        <h4 class="champTitle ellipsis">{{secondHighestKDAInfo.summonerPlaying}}</h4>
-        <div class="row" style="margin-bottom: 15px">
-            <div class="col-xs-6 col-xs-offset-3">
-                <div class="row">
-                    <div class="col-xs-3" style="padding: 2px" ng-repeat="item in secondHighestKDAInfo.itemArray" >
-                        <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}" title="{{item.name}}">
+        <div class="well" style="text-align: center">
+            <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + selectedChamp.image.full}}">
+            <h4 class="champTitle ellipsis">{{secondHighestKDAInfo.fullKDA}} -- KDA: {{secondHighestKDAInfo.KDA}}</h4>
+            <h4 class="champTitle ellipsis">{{secondHighestKDAInfo.summonerPlaying}}</h4>
+            <div class="row" style="margin-bottom: 15px">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <div class="row">
+                        <div class="col-xs-3" style="padding: 2px" ng-repeat="item in secondHighestKDAInfo.itemArray" >
+                            <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}" title="{{item.name}}">
+                        </div>
                     </div>
                 </div>
             </div>
+            <button type="button" class="btn btn-primary" ng-click="openModal(secondHighestKDAInfo.itemArray, 'secondHighestKDA')">Get Item Set</button>
         </div>
-        <button type="button" class="btn btn-primary" ng-click="openModal(secondHighestKDAInfo.itemArray, 'secondHighestKDA')">Get Item Set</button>
     </div>
 
     <div class="col-sm-3">
-        <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + selectedChamp.image.full}}">
-        <h4 class="champTitle ellipsis">{{thirdHighestKDAInfo.fullKDA}} -- KDA: {{thirdHighestKDAInfo.KDA}}</h4>
-        <h4 class="champTitle ellipsis">{{thirdHighestKDAInfo.summonerPlaying}}</h4>
-        <div class="row" style="margin-bottom: 15px">
-            <div class="col-xs-6 col-xs-offset-3">
-                <div class="row">
-                    <div class="col-xs-3" style="padding: 2px" ng-repeat="item in thirdHighestKDAInfo.itemArray" >
-                        <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}" title="{{item.name}}">
+        <div class="well" style="text-align: center">
+            <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + selectedChamp.image.full}}">
+            <h4 class="champTitle ellipsis">{{thirdHighestKDAInfo.fullKDA}} -- KDA: {{thirdHighestKDAInfo.KDA}}</h4>
+            <h4 class="champTitle ellipsis">{{thirdHighestKDAInfo.summonerPlaying}}</h4>
+            <div class="row" style="margin-bottom: 15px">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <div class="row">
+                        <div class="col-xs-3" style="padding: 2px" ng-repeat="item in thirdHighestKDAInfo.itemArray" >
+                            <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}" title="{{item.name}}">
+                        </div>
                     </div>
                 </div>
             </div>
+            <button type="button" class="btn btn-primary" ng-click="openModal(thirdHighestKDAInfo.itemArray,'thirdHighestKDA')">Get Item Set</button>
         </div>
-        <button type="button" class="btn btn-primary" ng-click="openModal(thirdHighestKDAInfo.itemArray,'thirdHighestKDA')">Get Item Set</button>
     </div>
-
 </div>
 
 
