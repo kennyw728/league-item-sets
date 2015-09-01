@@ -1,5 +1,28 @@
 angular.module('leagueItemSetsApp')
-    .service('Utilities', ['$http', 'apiKey', function ($http, apiKey) {
+    .service('Utilities', ['RiotService', function (RiotService) {
+            
+            var items, consumableBlock;
+            RiotService.Items.Get().then(function (result) {
+                items = result.data.data;
+                consumableBlock = {
+                    type: 'All Consumables',
+                    recMath: false,
+                    minSummonerLevel: -1,
+                    maxSummonerLevel: -1,
+                    showIfSummonerSpell: "",
+                    hideIfSummonerSpell: "",
+                    items: []
+                };
+                                                   
+                angular.forEach(items, function(item){
+                    if(item.consumed === true && item.tags){
+                        consumableBlock.items.push({
+                            id: item.id.toString(),
+                            count: 1
+                        });
+                    }
+                });
+            });
 
             var CleanText = function (text) {
                 return text.toLowerCase().replace(/ /g, '');
@@ -32,10 +55,10 @@ angular.module('leagueItemSetsApp')
                             count: 1
                         });
                     });
-                    
                     result.blocks.push(newBlock);
                 });
-                
+               
+                result.blocks.push(consumableBlock);
                 return result;
             };
             

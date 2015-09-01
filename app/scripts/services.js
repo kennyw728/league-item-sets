@@ -15,7 +15,7 @@ angular.module('leagueItemSetsApp')
             };
             
             var Items = {
-                Get: function () { return $http.get(baseURL + 'api/lol/static-data/na/v1.2/item?' + APIKey); }
+                Get: function () { return $http.get(baseURL + 'api/lol/static-data/na/v1.2/item?itemListData=all&' + APIKey); }
                 };
             
             var MatchHistory = {

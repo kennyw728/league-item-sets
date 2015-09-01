@@ -6,25 +6,26 @@ angular.module('leagueItemSetsApp')
         //
         //Init
         //
+        $scope.KDAColor = Utilities.KDAColor;
+        
         RiotService.Champions.Get().then(function (result) {
             $scope.champions = result.data.data;
-        });
 
-        RiotService.Items.Get().then(function (result) {
-            $scope.items = result.data.data;
+            RiotService.Items.Get().then(function (result) {
+                $scope.items = result.data.data;
+
+                if ($routeParams.summoner !== undefined) {
+                    if (isNaN($routeParams.summoner)) {
+                        RiotService.Summoner.GetByName($routeParams.summoner).then(function (result) {
+                            getSummoner(result.data[Utilities.CleanText($routeParams.summoner)].id);
+                        });
+                    } else {
+                        getSummoner($routeParams.summoner);
+                    }
+                }
+            });
         });
         
-        $scope.KDAColor = Utilities.KDAColor;
-
-        if ($routeParams.summoner !== undefined) {
-            if (isNaN($routeParams.summoner)) {
-                RiotService.Summoner.GetByName($routeParams.summoner).then(function (result) {
-                    getSummoner(result.data[Utilities.CleanText($routeParams.summoner)].id);
-                });
-            } else {
-                getSummoner($routeParams.summoner);
-            }
-        }
 
         //
         //Events
@@ -40,7 +41,7 @@ angular.module('leagueItemSetsApp')
 
 
             var blocks = [{
-                    type: 'Block Title 1',
+                    type: summoner + '\'s Block',
                     items: items
                 }];
             var itemSetJSON = Utilities.CreateItemSetJSON(summoner + '\'s Build', blocks);
