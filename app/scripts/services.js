@@ -2,6 +2,7 @@ angular.module('leagueItemSetsApp')
     .service('RiotService', ['$http', 'apiKey', function ($http, apiKey) {
 
             var baseURL = 'https://global.api.pvp.net/';
+            var smartItemsURL = 'http://leagueitemsets-pythonfrueh.rhcloud.com/champion/';
             var APIKey = apiKey.GetKey();
 
             var Champions = {
@@ -15,23 +16,33 @@ angular.module('leagueItemSetsApp')
             };
             
             var Items = {
-                Get: function () { return $http.get(baseURL + 'api/lol/static-data/na/v1.2/item?itemListData=all&' + APIKey); }
-                };
+                Get: function () { return $http.get(baseURL + 'api/lol/static-data/na/v1.2/item?' + APIKey); }
+            };
             
             var MatchHistory = {
                 GetBySummonerID: function (summonerID) { return $http.get(baseURL + 'api/lol/na/v2.2/matchhistory/' + summonerID + '?' + APIKey); }
-            }
+            };
+
+            var OneMatch = {
+                GetByMatchID: function (matchID) { return $http.get(baseURL + 'api/lol/na/v2.2/match/' + matchID + '?' + APIKey);}
+            };
             
             var Challengers = {
                 Get: function () { return $http.get(baseURL + 'api/lol/na/v2.5/league/challenger?type=RANKED_SOLO_5x5&' + APIKey); }
-            }
+            };
+
+            var SmartItems = {
+                Get: function (championId) { return $http.get(smartItemsURL + championId); }
+            };
             
             return {
                 Champions: Champions,
                 Summoner: Summoner,
                 Items: Items,
                 MatchHistory: MatchHistory,
-                Challengers: Challengers
+                OneMatch: OneMatch,
+                Challengers: Challengers,
+                SmartItems: SmartItems
             };
         }
     ]);

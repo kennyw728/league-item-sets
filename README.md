@@ -20,16 +20,23 @@ and Nathan Frueh (NA: urbanVenturer)
     - We tried to maintain a codebase that is easily scalable with CSS classes or service calls
 - Creativity/Originality
     - We hope it looks nice for our users
-    - We havent seen anything online that can create item set JSON files easily and we hope we can fill that gap for summoners
+    - We haven't seen anything online that can create item set JSON files easily and we hope we can fill that gap for summoners
 - Project Documentation
     - Spent a lot of time here :D
 
 ## Our process
+# Frontend
 - Setup GitHub repository
 - Download GitBash, NodeJS
 - Use Yeoman to create our scaffolding website structure
 - Use Netbeans to create/edit code
 - Grunt to serve/test/dist our code
+# Backend
+- Initialize Python webapp from OpenShift
+- Create cron script to periodically store match history from challenger and master tier players
+- Perform KDA and popular item analysis and store in champion-centered MongoDB collection
+- Create Restful routes via Flask to use with our front-end
+
 
 ## Technologies used
 - Front End
@@ -42,10 +49,13 @@ and Nathan Frueh (NA: urbanVenturer)
 - Back End
     - Rito Games API
     - MongoDB
+    - Python
+    - Flask
 - Repository
     - GitHub
 - IDE
     - NetBeans
+    - Webstorm
 
 ## Challenges Faced
 - Time Constraint
@@ -60,14 +70,14 @@ and Nathan Frueh (NA: urbanVenturer)
 ## TODO (we have more cool ideas, but ran out of time)
 
 - Champion Page
-    - top half for most frequent
-    - bottom half list best performing (kda, most win by summoner, etc)
+    - Top half for most frequent
+    - Bottom half list best performing (kda, most win by summoner, most successful builds)
 - Summoner Page
-    - search for specific champions played by specific players
+    - Search for specific champions played by specific players
     - KDA indicators (with W/L indicator)
-    - search past the 10 most recent ranked games
+    - Search past the 10 most recent ranked games
 - General additions
     - Build order breakdowns (early/mid/late) in addition to final build for summoners
-    - other regions
+    - Analyze games from other regions
 - CSS (can always make it prettier)
 - Documentation (can always have more of this)
