@@ -100,6 +100,19 @@ body {
     font-size: 25px;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+.wellText {
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.wellHover:hover {
+    background-color: #00B5E2;
+}
+
 body { 
     background-color: #121212;
     color: white;

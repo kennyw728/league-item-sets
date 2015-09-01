@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('leagueItemSetsApp')
-    .controller('MainCtrl', function ($scope, RiotService) {
+    .controller('ChampionsCtrl', function ($scope, RiotService) {
 
         RiotService.Champions.Get().then(function (result) {
             $scope.champions = result.data.data;

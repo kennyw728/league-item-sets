@@ -22,11 +22,16 @@ angular.module('leagueItemSetsApp')
                 GetBySummonerID: function (summonerID) { return $http.get(baseURL + 'api/lol/na/v2.2/matchhistory/' + summonerID + '?' + APIKey); }
             }
             
+            var Challengers = {
+                Get: function () { return $http.get(baseURL + 'api/lol/na/v2.5/league/challenger?type=RANKED_SOLO_5x5&' + APIKey); }
+            }
+            
             return {
                 Champions: Champions,
                 Summoner: Summoner,
                 Items: Items,
-                MatchHistory: MatchHistory
+                MatchHistory: MatchHistory,
+                Challengers: Challengers
             };
         }
     ]);

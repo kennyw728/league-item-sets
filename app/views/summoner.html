@@ -1,12 +1,15 @@
-<form class="form-inline" style="text-align: center" ng-submit="searchSummoner(newSummoner)">
+<form class="form-inline" style="text-align: center; margin-bottom: 25px" ng-submit="searchSummoner(newSummoner)">
     <div class="form-group input-group">
         <input type="text" class="form-control" style="width: 300px" placeholder="Enter a summoner" ng-model="newSummoner">
         <span class="input-group-addon" ng-click="searchSummoner(newSummoner)">Go</span>
     </div>
 </form>
-<div>
+<div style="text-align: center; margin: 150px 0" ng-show="showErrorMessage">
+    <h2>There is no summoner in NA with that name</h2>
+</div>
+<div ng-show="summoner.playerOrTeamName">
     <hr>
-    <div class="row" style="border: solid 1px; background-color: rgba(255, 255, 255, 0.04)" ng-show="summoner.playerOrTeamName">
+    <div class="row" style="border: solid 1px; background-color: rgba(255, 255, 255, 0.04)">
         <img class="headerIcon" src="https://avatar.leagueoflegends.com/na/{{summoner.playerOrTeamName}}.png">
         <div class="headerText">{{summoner.playerOrTeamName}}</div>
         <div class="subheaderText">{{summoner.division}} - {{summoner.leaguePoints}}LP <span style="margin-left: 25px">Wins: {{summoner.wins}}</span></div>

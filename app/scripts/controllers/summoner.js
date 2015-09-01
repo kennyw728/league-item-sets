@@ -60,12 +60,13 @@ angular.module('leagueItemSetsApp')
 
         function getSummoner(summonerID) {
             RiotService.Summoner.GetByID(summonerID).then(function (result) {
-                
                 if(result.data[summonerID].length > 0){
                     $scope.summoner = result.data[summonerID][0].entries[0];
                     $scope.summoner.division = result.data[summonerID][0].tier + ' ' + $scope.summoner.division;
+                    getMatchHistory(summonerID);
                 }
-                getMatchHistory(summonerID);
+            }, function(){
+                $scope.showErrorMessage = true;
             });
         }
 

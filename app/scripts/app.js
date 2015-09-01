@@ -18,24 +18,24 @@ angular.module('leagueItemSetsApp', [
 ]).config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'views/main.html',
-            controller: 'MainCtrl',
-            controllerAs: 'main'
-        })
-        .when('/about', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl',
-            controllerAs: 'about'
+            templateUrl: 'views/home.html',
+            controller: 'HomeCtrl',
+            controllerAs: 'home'
         })
         .when('/summoner/:summoner', {
             templateUrl: 'views/summoner.html',
             controller: 'SummonerCtrl',
             controllerAs: 'summoner'
         })
-        .when('/summoner', {
-            templateUrl: 'views/summoner.html',
-            controller: 'SummonerCtrl',
-            controllerAs: 'summoner'
+        .when('/summoners', {
+            templateUrl: 'views/summoners.html',
+            controller: 'SummonersCtrl',
+            controllerAs: 'summoners'
+        })
+        .when('/champions/', {
+            templateUrl: 'views/champions.html',
+            controller: 'ChampionsCtrl',
+            controllerAs: 'champions'
         })
         .when('/champion/:id', {
             templateUrl: 'views/champion.html',
