@@ -38,10 +38,24 @@ angular.module('leagueItemSetsApp')
                 
                 return result;
             };
+            
+            var KDAColor = function (kda) {
+                var k = parseInt(kda.split('/')[0]);
+                var d = parseInt(kda.split('/')[1]);
+                var a = parseInt(kda.split('/')[2]);
+                if((k + a) / d >= 5){
+                    return 'green';
+                }
+                if((k + a) / d < 2){
+                    return '{border-color: red}';
+                }
+                return '{border-color: white}';
+            };
 
             return {
                 CleanText: CleanText,
-                CreateItemSetJSON: CreateItemSetJSON
+                CreateItemSetJSON: CreateItemSetJSON,
+                KDAColor: KDAColor
             };
         }
     ]);

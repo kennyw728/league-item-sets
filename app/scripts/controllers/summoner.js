@@ -13,6 +13,8 @@ angular.module('leagueItemSetsApp')
         RiotService.Items.Get().then(function (result) {
             $scope.items = result.data.data;
         });
+        
+        $scope.KDAColor = Utilities.KDAColor;
 
         if ($routeParams.summoner !== undefined) {
             if (isNaN($routeParams.summoner)) {

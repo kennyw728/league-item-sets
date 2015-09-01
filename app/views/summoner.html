@@ -18,7 +18,7 @@
 </div>
 <div class="row">
     <div class="col-sm-3" ng-repeat="match in matches| orderBy: '-matchCreation'" style="text-align: center">
-        <div class="well" ng-repeat="participant in match.participants">
+        <div class="well" ng-repeat="participant in match.participants" ng-class="{ 'color': KDAColor(participant.kda) }">
             <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + participant.championDetail.image.full}}">
             <h4 class="champTitle ellipsis">{{participant.kda}}</h4>
             <div class="row" style="margin-bottom: 15px">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" ng-click="openModal(participant.items, summoner.name, participant.championDetail)">Get Item Set</button>
+            <button type="button" class="btn btn-primary" ng-click="openModal(participant.items, summoner.playerOrTeamName, participant.championDetail)">Get Item Set</button>
         </div>
     </div>
 </div>
