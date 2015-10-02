@@ -42,6 +42,11 @@ angular.module('leagueItemSetsApp', [
             controller: 'ChampionCtrl',
             controllerAs: 'champion'
         })
+        .when('/about', {
+            templateUrl: 'views/about.html',
+            controller: 'HomeCtrl',
+            controllerAs: 'home'
+        })
         .otherwise({
             redirectTo: '/'
         });

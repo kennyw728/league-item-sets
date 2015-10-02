@@ -122,6 +122,35 @@ body {
     color: black;
 }
 
+.simpleHref {
+  color: #FFFFFF;
+  text-decoration:none;
+}
+
+.popularItems {
+    width: 14%;
+    padding-left: 0;
+    padding-right: 0;
+
+}
+
+.img-container {
+    display: block; margin: 0 auto;
+}
+
+.center-text {
+    display:block;
+    text-align: center;
+    padding: 10px;
+    margin: 0 auto;
+    height: 50px;
+}
+
+.center-img {
+  display:block;
+  margin:auto;
+}
+
 //BOOTSTRAP OVERRIDES
 .navbar-default {
     background-color: black;

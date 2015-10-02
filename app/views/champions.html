@@ -1,13 +1,21 @@
-<form class="form-inline" style="text-align: center">
-    <div class="form-group">
-        <label>Filter</label>
-        <input type="text" class="form-control" placeholder="Champion Name" ng-model="filterChampion" ng-keyup="filter(filterChampion)">
+<div class="row">
+    <div class="col-sm-9">
+        <h3>Current Patch: {{currentPatch}} - {{numGames}} challenger & master games analyzed on this patch.</h3>
+        <h4>(That's {{numBuilds}} item builds and counting!)</h4>
     </div>
-</form>
+    <div class="col-sm-3">
+        <form class="form-inline">
+            <div class="form-group" style="float: right;">
+                <label>Filter &nbsp </label>
+                <input type="text" class="form-control" placeholder="Champion Name" ng-model="filterChampion" ng-keyup="filter(filterChampion)">
+            </div>
+        </form>
+    </div>
+</div>
 <hr>
 <div class="row">
-    <div class="col-md-1" ng-repeat="(championName, championDetail) in champions | orderObjectBy:'name'" ng-hide="championDetail.hide">
-        <a ng-href="#/champion/{{championDetail.id}}"><img class="champIcon" src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + championDetail.image.full}}"></a>
+    <div class="col-xs-3 col-md-1" ng-repeat="(championName, championDetail) in champions | orderObjectBy:'name'" ng-hide="championDetail.hide">
+        <a ng-href="#/champion/{{championDetail.id}}"><img class="champIcon" src="{{dataDragonURL + championDetail.image.full}}"></a>
         <div class="champTitle ellipsis">{{championDetail.name}}</div>
     </div>
 </div>
