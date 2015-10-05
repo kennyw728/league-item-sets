@@ -17,20 +17,25 @@
     <hr>
 </div>
 <div class="row">
-    <div class="col-sm-3" ng-repeat="match in matches| orderBy: '-matchCreation'" style="text-align: center">
-        <div class="well" ng-repeat="participant in match.participants">
-            <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + participant.championDetail.image.full}}">
-            <h4 class="champTitle ellipsis">{{participant.kda}}</h4>
+    <div class="col-sm-3" ng-repeat="match in matches" style="text-align: center">
+        <div class="well">
+            <img class="champIcon" style="width: 75px; height: 75px" ng-src="{{'//ddragon.leagueoflegends.com/cdn/5.15.1/img/champion/' + match.championDetail.image.full}}">
+            <h4 class="champTitle ellipsis">{{match.kda}}</h4>
             <div class="row" style="margin-bottom: 15px">
                 <div class="col-xs-6 col-xs-offset-3">
                     <div class="row">
-                        <div class="col-xs-3" style="padding: 2px" ng-repeat="item in participant.items" >
+                        <div class="col-xs-3" style="padding: 2px" ng-repeat="item in match.items" >
                             <img style="width: 100%" ng-src="{{'http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/' + item.id + '.png'}}" title="{{item.name}}">
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" ng-click="openModal(participant.items, summoner.playerOrTeamName, participant.championDetail)">Get Item Set</button>
+            <button type="button" class="btn btn-primary" ng-click="openModal(match.items, summoner.playerOrTeamName, match.championDetail)">Get Item Set</button>
+        </div>
+    </div>
+    <div class="col-sm-3" style="text-align: center">
+        <div class="well" style="height: 266px">
+            <button type="button" class="btn btn-primary" style="margin-top: 100px" ng-click="next5(matches.length/5)">Get next 5 matches!</button>
         </div>
     </div>
 </div>

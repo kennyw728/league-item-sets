@@ -22,9 +22,9 @@ angular.module('leagueItemSetsApp')
             Get: function () { return $http.get(baseURL + 'api/lol/static-data/na/v1.2/versions?' + APIKey); }
         };
 
-        // RIP IN PEACE
         var MatchHistory = {
-            GetBySummonerID: function (summonerID) { return $http.get(baseURL + 'api/lol/na/v2.2/matchhistory/' + summonerID + '?' + APIKey); }
+            GetBySummonerID: function (summonerID, pageNumber) { return $http.get(baseURL + 'api/lol/na/v2.2/matchlist/by-summoner/' + summonerID + 
+                    '?beginIndex=' + (pageNumber*5 - 5) + '&endIndex=' + (pageNumber*5) + '&' + APIKey); }
         };
 
         var OneMatch = {
