@@ -6,6 +6,7 @@ angular.module('leagueItemSetsApp')
         //
         //Init
         //
+        $scope.matches = [];
         $scope.KDAColor = Utilities.KDAColor;
         
         RiotService.Champions.Get().then(function (result) {
@@ -17,10 +18,12 @@ angular.module('leagueItemSetsApp')
                 if ($routeParams.summoner !== undefined) {
                     if (isNaN($routeParams.summoner)) {
                         RiotService.Summoner.GetByName($routeParams.summoner).then(function (result) {
-                            getSummoner(result.data[Utilities.CleanText($routeParams.summoner)].id);
+                            $scope.summonerID = result.data[Utilities.CleanText($routeParams.summoner)].id;
+                            getSummoner($scope.summonerID);
                         });
                     } else {
-                        getSummoner($routeParams.summoner);
+                        $scope.summonerID = $routeParams.summoner;
+                        getSummoner($scope.summonerID);
                     }
                 }
             });
@@ -33,6 +36,10 @@ angular.module('leagueItemSetsApp')
         $scope.searchSummoner = function (summoner) {
             $location.path('summoner/' + summoner);
         };
+        
+        $scope.next5 = function(pageNumber){
+            getMatchHistory($scope.summonerID, pageNumber);
+        }
 
         $scope.openModal = function (items, summoner, champion) {
             $('#jsonModal').modal('show');
@@ -66,32 +73,42 @@ angular.module('leagueItemSetsApp')
                 if(result.data[summonerID].length > 0){
                     $scope.summoner = result.data[summonerID][0].entries[0];
                     $scope.summoner.division = result.data[summonerID][0].tier + ' ' + $scope.summoner.division;
-                    getMatchHistory(summonerID);
+                    getMatchHistory(summonerID, 1);
                 }
             }, function(){
                 $scope.showErrorMessage = true;
             });
         }
 
-        function getMatchHistory(id) {
-            RiotService.MatchHistory.GetBySummonerID(id).then(function (result) {
-                $scope.matches = result.data.matches;
+        function getMatchHistory(id, pageNumber) {
+            RiotService.MatchHistory.GetBySummonerID(id, pageNumber).then(function (result) {
+                $scope.matches = $scope.matches.concat(result.data.matches);
                 angular.forEach($scope.matches, function (match) {
                     angular.forEach($scope.champions, function (champion) {
-                        if (match.participants[0].championId === champion.id) {
-                            match.participants[0].championDetail = champion;
+                        if (match.champion === champion.id) {
+                            match.championDetail = champion;
                         }
                     });
 
-                    var items = [];
-                    for (var i = 0; i < 7; i++) {
-                        var itemID = match.participants[0].stats['item' + i];
-                        if (itemID !== 0) {
-                            items.push(angular.copy($scope.items[itemID]));
+                    RiotService.OneMatch.GetByMatchID(match.matchId).then(function(result){
+                        var matchHistory = result.data;
+                        for(var i = 0; i < 10; i++){
+                            if(matchHistory.participantIdentities[i].player.summonerId === id){
+                                var index = i;
+                            }
                         }
-                    }
-                    match.participants[0].items = items;
-                    match.participants[0].kda = match.participants[0].stats.kills + ' / ' + match.participants[0].stats.deaths + ' / ' + match.participants[0].stats.assists
+                        var items = [];
+                        for (var i = 0; i < 7; i++) {
+                            var itemID = matchHistory.participants[index].stats['item' + i];
+                            if (itemID !== 0) {
+                                items.push(angular.copy($scope.items[itemID]));
+                            }
+                        }
+                        match.items = items;
+                        match.kda = matchHistory.participants[index].stats.kills + ' / ' + matchHistory.participants[index].stats.deaths + ' / ' + matchHistory.participants[index].stats.assists;
+                    }).catch(function(){
+                        toastr.error("You have made too many API calls at one time", "Cannot Retrieve Data");
+                    });
                 });
             });
         }
